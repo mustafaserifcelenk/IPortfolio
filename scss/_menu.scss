@@ -1,0 +1,146 @@
+//Menu Button
+.menu-btn {
+  position: absolute;
+  z-index: 3;
+  right: 35px;
+  top: 35px;
+  cursor: pointer;
+  @include easeOut;
+
+  .btn-line {
+    width: 28px;
+    height: 3px;
+    margin: 0 0 5px 0;
+    background: set-text-color($primary-color);
+    @include easeOut;
+  }
+
+  // Rotate Into X With Menu Line
+  &.close {
+    transform: rotate(180deg);
+
+    .btn-line {
+      // Line 1 - Rotate
+      &:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+      }
+
+      // Line 2 - Hide
+      &:nth-child(2) {
+        opacity: 0;
+      }
+
+      // Line 3 - Rotate
+      &:nth-child(3) {
+        transform: rotate(-45deg) translate(7px, -6px);
+      }
+    }
+  }
+}
+
+//menu overlay
+.menu {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  opacity: 0.9;
+  visibility: hidden; //menu yazılarının başlangıçta görünmemesini istiyoruz
+
+  &.show {
+    visibility: visible; //menu butonuna basınca menu yazıları görünsün
+  }
+
+  // .menu-branding yazmak yerine bunu yazabiliriz, &=menu
+  &-branding,
+  &-nav {
+    display: flex; //bu kolon yapıyor yapıları, yan yana değil alt alta diziliyorlar
+    flex-flow: column wrap; // Dikey dizilecekler
+    align-items: center; //yukarıdan?
+    justify-content: center; //yandan
+    float: left; //iki tarafta float olsun
+    width: 50%; //iki tarafta yarı yarıya yer kaplasın
+    height: 100vh;
+    overflow: hidden; //scrollbar istemiyoruz
+  }
+
+  &-nav {
+    margin: 0;
+    padding: 0;
+    background: darken($primary-color, $amount: 5);
+    list-style: none; //liste noktaları kalksın
+    transform: translate3d(
+      0,
+      -100%,
+      0
+    ); //-100% yukarıdan aşağı indiriyor, +100 tersi yönde
+    @include easeOut;
+
+    &.show {
+      //slide in from top, bnu tam anlamadım bakmam lazım
+      transform: translate3d(0, 0, 0);
+    }
+  }
+
+  //Branding Side
+  &-branding {
+    background: $primary-color;
+    transform: translate3d(0, 100%, 0); //Yukarı yüzde yüz iticez
+    @include easeOut;
+
+    &.show {
+      //slide in from bottom, bnu tam anlamadım bakmam lazım
+      transform: translate3d(0, 0, 0);
+    }
+
+    .portrait {
+      width: 250px;
+      height: 250px;
+      background: url("../img/portrait.jpg");
+      border-radius: 50%; //circular
+      border: solid 3px $secondary-color;
+    }
+  }
+
+  .nav-item {
+    transform: translate3d(
+      600px,
+      0,
+      0
+    ); //yukarı aşağı değil yatayla ilgileniyoruz
+    @include easeOut;
+
+    &.show {
+      //slide in from right, bnu tam anlamadım bakmam lazım
+      transform: translate3d(0, 0, 0);
+    }
+
+    &.current > a {
+      color: $secondary-color;
+    }
+  }
+
+  .nav-link {
+    display: inline-block; //Hem satır içi eleman gibi yan yana dursun hemde genişlik, yükseklik ve margin tanımlarını uygulayalım istersek display:inline-block tanımı yapmalıyız.https://fatihhayrioglu.com/super-bir-ozellik-displayinline-block/#:~:text=display%3Ainline%2Dblock%20tan%C4%B1m%C4%B1%20yap%C4%B1lm%C4%B1%C5%9F,i%C3%A7inde%20blok%2Dlevel%20%C3%B6zelli%C4%9Fine%20b%C3%BCr%C3%BCn%C3%BCr.
+    position: relative; //static - Hiçbir özellik belirtilmediyse, fixed - Sabit, tarayıcıya göre hareket etmeyen element, relative - Normal olması gereken pozisyona göre konum belirlemek, absolute - Koordinat belirleyerek sayfada bir yere yerleştirmek(https://css.sitesi.web.tr/css-position.html#:~:text=relative%3A%20Normal%20Pozisyona%20G%C3%B6re%20Konumlama,%C3%BCst%20tarafa%20do%C4%9Fru%20hareket%20ettirebiliriz.)
+    font-size: 30px;
+    text-transform: uppercase;
+    padding: 1rem 0;
+    font-weight: 300;
+    color: set-text-color($primary-color);
+    text-decoration: none;
+    @include easeOut; //???
+
+    &:hover {
+      color: $secondary-color;
+    }
+  }
+}
+
+//Delay each nav item slide by 0.1s
+
+@for $x from 1 to 5 {
+  .nav-item:nth-child(#{$x}) {
+    transition-delay: $x *
+      0.1s; //her eleman 0.1s * 1,2,3,4 kkadar delay alsın böylece delay her elemanda git gide artsın
+  }
+}

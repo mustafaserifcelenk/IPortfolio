@@ -1,0 +1,201 @@
+@import "config";
+@import "menu";
+
+* {
+  box-sizing: border-box;
+}
+body {
+  @include background;
+  background: $primary-color;
+  color: set-text-color($primary-color);
+  height: 100%;
+  margin: 0;
+  font-family: "Segoe UI", Tahoma, "Segoe UI", Tahoma, Geneva, Verdana,
+    sans-serif;
+  line-height: 1.5;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0;
+  font-weight: 400;
+
+  // & işareti .heading.lg-heading yapar, yani parent class ile kullanılan classı concatenate eder https://stackoverflow.com/questions/9988558/what-does-in-sub-title-indicates-in-scss, bu yaptığımız örnekte de lg headingi h1 ile birlikte kullanıyor, lg-heading h1 içine nested değil onun kendi classı dolayısıyla onları concatenate etmek gerekiyor.
+  &.lg-heading {
+    font-size: 6rem;
+    // rem default font size demek, yani 16px(html)
+  }
+
+  &.sm-heading {
+    margin-bottom: 2rem;
+    padding: 0.2rem 1rem;
+    background: rgba(lighten($color: #444, $amount: 2), $alpha: 0.5);
+    // lighten bir rengi açmak için kullanılır, hafifletmek
+  }
+}
+
+a {
+  color: #fff;
+  text-decoration: none;
+}
+
+header {
+  position: fixed;
+  // header daima tepede duracak
+  z-index: 2;
+  // elementlerin hangisinin ön tarafta olduğu, send to back mantığı
+  width: 100%;
+}
+
+.text-secondary {
+  color: $secondary-color;
+}
+
+main {
+  padding: 4rem;
+  min-height: calc(100vh - 60px);
+  //height: 100%;  %100 yazılar ekranın kaplayabileceği kadarını kaplasın demek ama biz footerın hep en altta olmasını istediğimizden bunu garantilemek adına bu hesabı yapyık
+
+  .icons {
+    margin-top: 1rem;
+
+    a {
+      padding: 0.4rem;
+
+      &:hover {
+        color: $secondary-color;
+        @include easeOut();
+      }
+      // a:hover ile aynı şey
+    }
+  }
+
+  &#home {
+    overflow: hidden;
+    // scroll bar istemiyoruz asla
+    h1 {
+      margin-top: 20vh;
+      // sayfa 100 vh, 20 sini aldık
+    }
+  }
+}
+
+.about-info {
+  display: grid;
+  gap: 30px; //biraz arada boşluk bırakıyor
+  grid-template-areas:
+    "bioimage bio bio"
+    "job1 job2 job3";
+  grid-template-columns: repeat(3, 1fr); //1fr 1fr 1fr
+
+  .bio-image {
+    grid-area: bioimage;
+    margin: auto;
+    border-radius: 50%;
+    border: $secondary-color 3px solid;
+  }
+
+  .bio {
+    grid-area: bio;
+    font-size: 1.5rem;
+  }
+
+  .job-1 {
+    grid-area: job1;
+  }
+
+  .job-2 {
+    grid-area: job2;
+  }
+
+  .job-3 {
+    grid-area: job3;
+  }
+
+  .job {
+    background: lighten($primary-color, $amount: 5);
+    padding: 0.5rem;
+    border-bottom: $secondary-color 5px solid;
+  }
+}
+
+//Woerk/Projects
+
+.projects {
+  display: grid;
+  gap: 0.7rem;
+  grid-template-columns: repeat(3, 1fr);
+
+  img {
+    width: 100%;
+    border: 3px #fff solid;
+
+    &:hover {
+      opacity: 0.5;
+      border-color: $secondary-color;
+      @include easeOut;
+    }
+  }
+}
+
+//Contact Page
+.boxes {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-top: 1rem;
+
+  div {
+    font-size: 2rem;
+    border: 3px #fff solid;
+    padding: 1.5rem 2.5rem;
+    margin-bottom: 3rem;
+    @include easeOut;
+
+    &:hover {
+      // padding: 0.5rem 1.5rem;
+      background-color: $secondary-color;
+      color: set-text-color($secondary-color);
+      span {
+        color: set-text-color($secondary-color);
+      }
+    }
+  }
+}
+
+//Button Styles
+// Biz btn sınıfını hiç kullanmadık, ama sass da biz btn clasını extendleyebiliyoruz, uzatabiliyoruz
+.btn {
+  display: block; //inline blockta yan yana oldular, inline blockta wrap yok
+  padding: 0.5rem 1rem;
+  border: 0;
+  margin-bottom: 0.3rem;
+  &:hover {
+    background: $secondary-color;
+    color: set-text-color($secondary-color);
+  }
+}
+
+.btn-dark {
+  @extend .btn;
+  background: darken($primary-color, $amount: 50);
+  color: #fff;
+}
+
+.btn-light {
+  @extend .btn;
+  background: lighten($primary-color, $amount: 50);
+  color: #333; //yazı rengi
+}
+
+#main-footer {
+  text-align: center;
+  padding: 1rem;
+  background: darken($primary-color, $amount: 10);
+  color: set-text-color($primary-color);
+  height: 60px;
+}
+
+@import "mobile"; //Normal scss çalıştıktan sonra çalışsın

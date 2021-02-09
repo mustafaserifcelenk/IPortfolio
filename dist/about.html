@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/main.css" />
+    <title>About Me</title>
+    <script
+      src="https://kit.fontawesome.com/87f4b6fa74.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <header>
+      <!-- toggledaki 3 çizgiyi yapıyoruz burada -->
+      <div class="menu-btn">
+        <div class="btn-line"></div>
+        <div class="btn-line"></div>
+        <div class="btn-line"></div>
+      </div>
+
+      <!-- navbar 2 kısımdan oluşacak sol taraf marka sağ taraf menü -->
+      <nav class="menu">
+        <div class="menu-branding">
+          <div class="portrait"></div>
+          <!--resim-->
+        </div>
+        <ul class="menu-nav">
+          <li class="nav-item">
+            <a href="index.html" class="nav-link"> Home </a>
+          </li>
+          <li class="nav-item current">
+            <a href="about.html" class="nav-link"> About Me </a>
+          </li>
+          <li class="nav-item">
+            <a href="work.html" class="nav-link"> My Work </a>
+          </li>
+          <li class="nav-item">
+            <a href="contact.html" class="nav-link"> How To Reach Me </a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <main id="About">
+      <h1 class="lg-heading">About <span class="text-secondary">Me</span></h1>
+      <h2 class="sm-heading">Let me tell you a few things...</h2>
+      <!-- About info'da her şey grid olacak -->
+      <div class="about-info">
+        <img src="img/portrait.jpg" alt="John Doe" class="bio-image" />
+
+        <div class="bio">
+          <h3 class="text-secondary">BIO</h3>
+          <p>
+            I'm a software developer. Graduate from Osmangazi University
+            Electrical - Electronic Engineering and continuing my master's
+            degree in Mechatronics.
+          </p>
+        </div>
+
+        <div class="job job-1">
+          <h3>Bilge Adam Star Developer Program</h3>
+          <h6>Full Stack Developer</h6>
+          <p>
+            I have experienced and continue to experience various web
+            technologies at Bilge Adam since September. A complete web
+            technologies development program that deals with the overwhelming
+            majority of web technologies(ASP.NET Core 5, React, Blazor, MSSQL,
+            PostgreSQL, MongoDb etc). Various application that comply with the
+            SOLID principles have been developed and several advanced
+            technologies have been experienced, Onion like architectures, AWS
+            Clouding etc.
+          </p>
+        </div>
+
+        <div class="job job-2">
+          <h3>Turkcell</h3>
+          <h6>Data Science</h6>
+          <p>
+            I managed to get several certificates from Turkcell. They are about
+            processing, visualization and manipulation of data, statistic for
+            data science, python programming and machine learning. I worked on
+            libraries like Pandas, Numpy, Scikit learn etc.
+          </p>
+        </div>
+
+        <div class="job job-3">
+          <h3>Udemy</h3>
+          <h6>Data Science</h6>
+          <p>I managed to get several certificates from Udemy.</p>
+        </div>
+      </div>
+    </main>
+    <footer id="main-footer">Copyright &copy; 2021</footer>
+    <script src="js/main.js"></script>
+  </body>
+</html>
